@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>cp109-webinar-lecture</title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+# CP109 Webinar 3
+## Topic 4 Review
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>*One point that I could do with going over again is the effect of pressure on the equilibrium constant*
+
+Revisit: 4.4a and 4.4b on Le Chatelier's principle. <!-- .element: class="fragment" center="false" text-size="true" data-fragment-index="1" -->
+
+Consider the equation for equilibrium constant given the following gas phase reaction: <!-- .element: style="display: flex; flex-direction: column; align-items: start; justify-content: space-evenly" class="fragment" align="left" data-fragment-index="2" -->
+
+`$\displaystyle \Large aA + bB \rightleftharpoons cC + dD $`<!-- .element: style="display: flex; flex-direction: column; align-items: start; justify-content: center" class="fragment" align="centre" data-fragment-index="2" -->
+
+The corresponding equilibrium constant is given by <!-- .element: class="fragment" data-fragment-index="3" -->
+
+`$\Large\displaystyle K_{p} = \frac{p_{C}^cp_{D}^d}{p_{A}^ap_{B}^b}$`<!-- .element: style="display: flex; flex-direction: column; align-items: start; justify-content: center" class="fragment" align="center" data-fragment-index="3" -->
+
+
+Where:<!-- .element: class="fragment" data-fragment-index="4" -->
+`$p_{X}^x$` 
+is the partial pressure of species,
+`$X,$`
+raised to the stoichiometric coefficient
+`$x.$`
+
+Partial pressure is given by the following expression<!-- .element: class="fragment" data-fragment-index="5" --> 
+
+$
+\Large\displaystyle p_{X}=y_{X}P_{T}
+$ <!-- .element: class="fragment" data-fragment-index="5" -->
+
+Where:<!-- .element: class="fragment" data-fragment-index="6" -->
+`$y_{X}$` 
+is the gas mole fraction of species 
+`$X,$`
+and
+`$P_{T}$`
+is the total pressure of the system
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+Plugging this into the equilibrium constant expression we obtain:
+
+- `$\large\displaystyle K_{p} = \frac{(y_{C}P_{T})^c(y_{D}P_{T})^d}{(y_{A}P_{T})^a(y_{B}P_{T})^b} $`
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`$\large\displaystyle K_{p}=\frac{y_{C}^cP_{T}^cy_{D}^dP_{T}^d}{y_{A}^aP_{T}^ay_{B}^bP_{T}^b}$`
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->`$\large\displaystyle  K_{p}=\frac{y_{C}^cy_{D}^dP_{T}^cP_{T}^d}{y_{A}^ay_{B}^bP_{T}^aP_{T}^b}$`
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->`$\large\displaystyle  K_{p}=\frac{y_{C}^cy_{D}^dP_{T}^{c+d}}{y_{A}^ay_{B}^bP_{T}^{a+b}} $`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+`$\huge\displaystyle  K_{p}=\frac{y_{C}^cy_{D}^dP_{T}^{c+d}}{y_{A}^ay_{B}^bP_{T}^{a+b}} $`
+
+Notice that:
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->if `$a+b = c+d$`, then the `$P_{T}$` terms cancel each other out and so system pressure has no effect
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->If `$a+b>c+d$` then the `$P_{T}$` only exists in the denominator and hence if `$P_{T} \uparrow$` then `$K_{p}\downarrow$` **so the system opposes this change by increasing `$y_{C}$` and `$y_{D}$`  and reducing `$y_{A}$` and `$y_{B}.$`**
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->If `$a+b<c+d$` then the `$P_{T}$` only exists in the numerator and hence if `$P_{T} \uparrow$` then `$K_{p}\uparrow$` **so the system opposes this change by increasing `$y_{A}$` and `$y_{B}$`  and reducing `$y_{C}$` and `$y_{D}.$`**
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>and a quick recap of the terms in the ideal gas equation and their relation to one another e.g. why is n directly proportional to V. 
+
+This has been answered in a forum post initiated by Ellen about topic 3 under the post: [end of topic 3 quiz question 9](https://classes.myplace.strath.ac.uk/mod/forum/discuss.php?d=474772)
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`$PV=nRT$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->`$P\propto n$`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>I also found the wording in Q3 of practice problems 4.3 a bit confusing
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Question**
+  <br>Given the gas phase reaction:
+  <br>`$A + B \rightleftharpoons C + D$`
+  <br>There are no products present at the beginning of the reaction. If at equilibrium there is twice as much products as there are reactants, if the system pressure
+  `$P_T = 10~\text{bar}$`
+  what is the equilibrium constant `$K$`?
+ ----
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**Interpretation**
+<br>Twice as much of products means that `$n_{C}=n_{D}=2n_{A}=2n_{B}$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->`$n\propto y$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" --> `$y_{C}=y_{D}=2y_{A}=2y_{B}$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->`$y\propto p$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->`$p_{C}=p_{D}=2p_{A}=2p_{B}$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->`$\displaystyle \Large K_{P}= \frac{p_{C}p_{D}}{p_{A}p_{B}}$`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>The topic was a step up, but was ok in general. It did take a lot more time to grasp things than in the previous topics. I had some issues with Q8/9 in the ETQ, but after going through the forum responses, these now make sense.
+
+>I understood most of this topic, however I struggled with questions 8 and 9 on the EOT quiz where you're asked to find the mole fraction using a given number of initial moles.
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->See forum for relevant explanations
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>Struggled with Le Chatelier's Principle and the Temperature Dependence of Equilibrium (hard to decide what steps to take to work out the question)
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Pressure?**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Compare total number of gaseous moles on LHS and compare to RHS
+	- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->If `$n_{LHS}<n_{RHS}$` then `$P\uparrow$` favours backward reaction, eqm shifts left
+	- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->If `$n_{LHS}>n_{RHS}$` then `$P\uparrow$` favours forward reaction, eqm shifts right
+	- &shy;<!-- .element: class="fragment" data-fragment-index="5" --> If `$n_{LHS}=n_{RHS}$` then `$P\uparrow$` has no effect
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->**Temperature?**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="7" -->If forward reaction has `$\Delta H>0$` (i.e. endothermic), then `$T\uparrow$` favours forward reaction, eqm shifts right
+	- &shy;<!-- .element: class="fragment" data-fragment-index="8" -->If forward reaction has `$\Delta H<0$` (i.e. exothermic), then `$T\uparrow$` favours backward reaction, eqm shifts left
+- &shy;<!-- .element: class="fragment" data-fragment-index="9" -->**Concentration?**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="10" -->If `$C_{products}\uparrow$` or `$C_{reactants}\downarrow$` then eqm shifts left
+	- &shy;<!-- .element: class="fragment" data-fragment-index="11" -->If `$C_{products}\downarrow$` or `$C_{reactants}\uparrow$` then eqm shifts right
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>Struggled with Le Chatelier's Principle and the Temperature Dependence of Equilibrium (hard to decide what steps to take to work out the question)
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Steps (DEPENDS ON QUESTION)**
+- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->If required, use thermodynamic information to determine equilibrium constant, `$K$`, by using
+  `$\Delta G^{\circ}=H^{\circ}−T\Delta S^{\circ}=−RT\ln{KP}$`
+- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Setup component balance equation for expression for equilibrium mole fractions
+| Species | Initial Moles | Eqm Moles | Eqm Mole Fraction | Eqm partial pressure |
+| -------- | -------------- | ------------------- | ----------------------------- |----|
+| `$A$`         |   `$1$`           | `$1-\alpha$`            | ...        |... |
+<!-- .element: class="fragment" data-fragment-index="3" -->
+- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Use equilibrium constant equation: 
+  `$\displaystyle K_{p} = \frac{p_{C}^cp_{D}^d}{p_{A}^ap_{B}^b}$`
+  and solve for `$\alpha$`.
+- &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Could end here.
+- &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Could require use of Van't Hoff Equation if comparing two temperatures.
+
+notes: 
+- if new temperature asked for will usually give some indication of the desired yield and so would determine the new k based on
+- Use
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>Vant Hoff Law ( is there any more worked examples for these anywhere that can be uploaded) but through practice and extra questions it should become easier (worked examples for all sub topics were helpful maybe add one for Vant Hoff's law where you have to find the temperature aswell since that confused me in the practice problems)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="templates/slidestemplate.png" -->
+<div class="" style="position: absolute; left: NaNpx; top: 0px; height: 700px; width: NaNpx; min-height: 700px; display: flex; flex-direction: column; align-items: start; justify-content: center" absolute="true">
+
+>Everything was really clear, until when first attempting the practice questions I didn't realise alpha was defined as the extent of reaction until I googled the formula for extent of reaction. Not sure if I just missed it, but once realising this it made the questions a lot easier!
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Although not explicitly discussed in topic 4, look back to topic 3 where extent of reaction is discussed in greater detail!
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+	      RevealPointer,
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":"120%","height":700,"margin":0,"maxScale":0.7,"controls":false,"progress":true,"slideNumber":false,"center":false,"transition":"fade","transitionSpeed":"normal"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
